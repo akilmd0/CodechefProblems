@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+ll ans=0;
+#define N 100001
+int dp[N];
+void solve()
+{
+    ll n,on=0,ze=0,block=0;
+    cin>>n;
+    string s;
+    cin>>s;
+    ll i=0;
+    while(i<n){
+        if(s[i]=='1')
+            while(i<n && s[i]=='1')i++;
+        else 
+            while(i<n && s[i]=='0') i++;
+        block++;
+    }
+    if(dp[block]&1) cout<<"SAHID\n";
+    else cout<<"RAMADHIR\n";
+}
+
+int main()
+{
+    fast_io;
+
+    dp[1]=1;
+    dp[2]=0;
+    for(int i=3; i<N; i++){
+        if(dp[i-2] && dp[i-1]) dp[i]=0;
+        else dp[i]=1;
+    }
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
