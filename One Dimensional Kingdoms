@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+class great{
+    public:
+    constexpr bool operator()(const pii &a, const pii &b) noexcept{
+        return a.ff<b.ff;
+    }
+};
+
+void solve()
+{
+    ll n;
+    cin>>n;
+    vpii arr(n);
+    
+    for(auto &it: arr)cin>>it.ff>>it.ss;
+    
+    sort(arr.begin(), arr.end(), great());
+    
+    ll c=n, en=-1;
+    for(auto it: arr){
+        if(en>=it.ff){
+            c--;
+            en=min(en,it.ss);
+        }
+        else{
+            en=it.ss;
+        }
+    }
+    cout<<c<<nline;
+
+}
+
+int main()
+{
+    fast_io;
+
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
