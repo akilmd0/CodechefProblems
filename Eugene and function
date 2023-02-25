@@ -1,0 +1,76 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+ll findVal(ll n){
+    ll sum=0;
+    if(n<10) return n;
+    while(1){
+        sum=0;
+        while (n)
+        {
+            sum+=n%10;
+            n/=10;
+        }
+        n=sum;
+        if(sum<10) return sum;
+    }
+}
+void solve()
+{
+    ll a,d,l,r;
+    cin>>a>>d>>l>>r;
+    vi arr(9);
+    ll al=a+(l-1)*d;
+    al=findVal(al);
+    ll x=al+d,c=1,l1=l++, sum=al;
+    arr[0]=al;
+    while(l<=r){
+        x=findVal(x);
+        if(x==al) break;
+        sum+=x;
+        if(c<9)
+            arr[c]=sum;
+        x+=d;
+        c++;
+        l++;
+    }
+    if(l>r)
+        cout<<sum<<nline;
+    else if(l==r) cout<<(sum+x)<<nline;
+    else{
+        ll diff=r-l1+1;
+        sum=sum*(diff/c);
+        ll rem=diff%c;
+        sum+=arr[rem-1];
+        cout<<sum<<nline;
+    }
+}
+
+int main()
+{
+    fast_io;
+
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
