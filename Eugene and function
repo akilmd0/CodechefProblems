@@ -21,48 +21,37 @@ using namespace std;
 #define pb emplace_back
 
 ll findVal(ll n){
-    ll sum=0;
+    ll sum;
     if(n<10) return n;
-    while(1){
-        sum=0;
-        while (n)
-        {
-            sum+=n%10;
-            n/=10;
-        }
-        n=sum;
-        if(sum<10) return sum;
+    sum=0;
+    while (n)
+    {
+        sum+=n%10;
+        n/=10;
     }
+    return findVal(sum);
+}
+ll findSum(vi &arr, ll n){
+    ll len=arr.size(), sum=0;
+    for(int i=0; i<len; i++)sum+=arr[i];
+    sum*=(n/len);
+    for(int i=0; i<n%len; i++)sum+=arr[i];
+    return sum;
 }
 void solve()
 {
     ll a,d,l,r;
     cin>>a>>d>>l>>r;
-    vi arr(9);
-    ll al=a+(l-1)*d;
-    al=findVal(al);
-    ll x=al+d,c=1,l1=l++, sum=al;
-    arr[0]=al;
-    while(l<=r){
-        x=findVal(x);
-        if(x==al) break;
-        sum+=x;
-        if(c<9)
-            arr[c]=sum;
-        x+=d;
-        c++;
-        l++;
+    a=findVal(a);
+    vi arr;
+    arr.pb(a);
+    ll x=a;
+    while(arr[0]!=findVal(a+=d)){
+        arr.pb(findVal(a));
     }
-    if(l>r)
-        cout<<sum<<nline;
-    else if(l==r) cout<<(sum+x)<<nline;
-    else{
-        ll diff=r-l1+1;
-        sum=sum*(diff/c);
-        ll rem=diff%c;
-        sum+=arr[rem-1];
-        cout<<sum<<nline;
-    }
+    ll sum=findSum(arr,r)-findSum(arr,l-1);
+    cout<<sum<<nline;
+
 }
 
 int main()
