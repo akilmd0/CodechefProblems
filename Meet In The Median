@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+class great{
+public:
+    constexpr bool operator()(const pii &a, const pii &b){
+        return a.ss<b.ss;
+    }
+};
+
+void solve()
+{
+    ll n,k;
+    cin>>n>>k;
+    vpii arr1, arr2;
+    for(int i=0;i<n;i++){
+        ll x;
+        cin>>x;
+        arr1.pb(mkp(x,i));
+    }
+    sort(arr1.begin(), arr1.end(), greater<pii>());
+    for(int i=0;i<k;i++){
+        arr2.pb(arr1[i]);
+    }
+    cout<<arr2[k/2].ff<<nline;
+    sort(arr2.begin(), arr2.end(), great());
+    for(int i=0;i<k;i++)cout<<arr2[i].ff<<" ";
+    cout<<nline;
+    
+}
+
+int main()
+{
+    fast_io;
+
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
