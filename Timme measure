@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+void solve()
+{
+    double angle;
+    cin>>angle;
+    for(int h=0; h<12; h++){
+        for(int m=0; m<60; m++){
+            double h_angle=(double)30*h+m/2.0;
+            double m_angle=(double)(m*6.0);
+            double anglediff=abs(h_angle-m_angle);
+            if (anglediff>180) anglediff=360-anglediff;
+            double diff=abs(anglediff-angle);
+            if(diff<1/120.0){
+                printf("%.2d:%.2d\n",h,m);
+            }
+        }
+    }
+}
+
+int main()
+{
+    fast_io;
+
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
