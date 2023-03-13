@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+void solve()
+{
+    ll n,k,m;
+    cin>>n>>k;
+    string s,ans="";
+    cin>>s;
+    vb arr(n,false);
+    bool flag=false;
+    m=0;
+    for(int i=0; i<=n-k; i++){
+        if( (flag && s[i]=='0') || (!flag && s[i]=='1')){
+            arr[i+k-1]=true;
+            flag=!flag;
+        }
+        ans+='0';
+        if(arr[i]) flag=!flag;
+    }
+
+    for(int i=s.size()-k+1; i<s.size(); i++){
+        if(flag){
+            if(s[i]=='1') ans+='0';
+            else ans+='1';
+        }
+        else ans+=s[i];
+        if(arr[i]) flag=!flag;
+    }
+    cout<<ans<<nline;
+}
+
+int main()
+{
+    fast_io;
+
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
