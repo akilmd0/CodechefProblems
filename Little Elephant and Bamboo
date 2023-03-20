@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+void checkequals(vi &arr1, vi &arr2){
+    for(int i=0; i< arr1.size();i++){
+        if(arr1[i]!=arr2[i]){
+            cout<<"-1\n";
+            return;
+        }
+    }
+    cout<<"0\n";
+}
+bool possible(vi &arr1, vi &arr2, ll sum1, ll sum2){
+    ll n=arr1.size();
+    ll step=(sum2-sum1)/(n-2);
+    ll remDecrease=step;
+    for(int i=0; i<n; i++){
+        ll dif=arr2[i]-arr1[i];
+        ll decstep=step-abs(dif);
+        if(decstep&1) return false;
+        remDecrease-=(decstep/2);
+        if(dif<0) remDecrease+=dif;
+        if(abs(dif)>step) return false;
+    }
+    if(remDecrease!=0) return false;
+    return true;
+}
+void solve(){
+ ll n ;
+ cin>>n;
+ vi arr1,arr2;
+ ll sum=0, sum2=0;
+ for(int i=0;i<n;i++){
+     ll x;
+     cin>>x;
+     arr1.pb(x);
+     sum+=x;
+ }
+ for(int i=0;i<n; i++){
+     ll x;
+     cin>>x;
+     sum2+=x;
+     arr2.pb(x);
+ }
+ ll inc=n-2;
+ if (n==1){
+    if(sum2<=sum) cout<<sum-sum2<<nline;
+    else cout<<"-1\n";
+ }
+ else if(n==2){
+     if(sum==sum2) 
+      cout<<abs(arr1[0]-arr2[0])<<nline;
+     else cout<<"-1\n";
+ }
+ else if(sum2==sum){
+     checkequals(arr1,arr2);
+ }
+ else if(sum2>sum){
+     ll dif=sum2-sum;
+     if(dif%inc==0 && possible(arr1, arr2, sum, sum2)){
+         cout<<dif/inc<<nline;
+     }
+     else cout<<"-1\n";
+ }
+ else cout<<"-1\n";
+}
+int main()
+{
+    fast_io;
+
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
