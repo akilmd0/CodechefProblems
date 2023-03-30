@@ -1,0 +1,89 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+
+ll parent(ll x,vi &par){
+    if (x==par[x]) return x;
+    return par[x]=parent(par[x],par);
+}
+void Union(ll x , ll y, vi &sz, vi &flag,vi &par){
+    if(x==y) return;
+    if(sz[y]>sz[x]) swap(x,y);
+    flag[x]|=flag[y];
+    par[y]=x;
+    sz[x]+=sz[y];
+}
+void MST_Kruskal(vector<pair<ll,pii> > &graph, string s){
+    ll ans=0;
+    sort(graph.begin(), graph.end());
+    ll n=s.size()+1;
+    vi sz(n), flag(n), par(n);
+    for(int i=1; i<n; i++){
+        par[i]=i;
+        sz[i]=1;
+        if(s[i-1]=='R') flag[i]=1;
+    }
+    for(auto it: graph){
+        ll wt=it.ff;
+        ll x=parent(it.ss.ff,par);
+        ll y=parent(it.ss.ss,par);
+        if(wt<=0){
+            ans+=wt;
+            Union(x,y,sz,flag,par);
+        }
+        else if(x!=y){
+            if(flag[x]==0 || flag[y]==0){
+                Union(x,y,sz,flag,par);
+                ans+=wt;
+            }
+        }
+    }
+    cout<<ans<<nline;
+}
+void solve(){
+    ll v,e,src;
+    cin>>v>>e;
+    vector<pair<ll,pii> > graph;
+    string s;
+    cin>>s;
+    for(int i=0; i<e; i++){
+        ll a,b,wt;
+        cin>>a>>b>>wt;
+        graph.pb(mkp(wt,mkp(a,b)));
+    }
+    MST_Kruskal(graph,s);
+    
+}
+int main()
+{
+    fast_io;
+
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+    
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
