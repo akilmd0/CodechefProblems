@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+ll power(ll a, ll n){
+    ll res=1;
+    while(n){
+        if(n&1) res=(res*a)%MOD;
+        n>>=1;
+        a=(a*a)%MOD;
+    }
+    return res;
+}
+
+void solve(){
+    ll n;
+    cin>>n;
+    ll pwr=(n+1)/2;
+    ll a=26, cr=26;
+    ll num=(2*a*((power(cr,pwr)-1+MOD)%MOD))%MOD;
+    ll den=power(cr-1,MOD-2)%MOD;
+    ll ans=(num*den)%MOD;
+    if(n&1){
+        ans=(ans-power(cr,pwr)+MOD)%MOD;
+    }
+    cout<<ans<<nline;
+}
+int main()
+{
+    fast_io;
+
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
