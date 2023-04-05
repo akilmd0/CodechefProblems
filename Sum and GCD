@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+void solve(){
+    ll n;
+    cin>>n;
+    int a=0,b=0;
+    set<int> st;
+    for(int i=0; i<n; i++){
+        int x;
+        cin>>x;
+        st.insert(x);
+    }
+    vector<int> arr (st.begin(), st.end());
+    if(arr.size()==1){
+        cout<<2*arr[0]<<nline;
+        return;
+    }
+    if(arr.size()==2){
+        cout<<arr[0]+arr[1]<<nline;
+        return;
+    }
+    a=arr[0];
+    n=arr.size();
+    for(int i=1; i<n-2; i++){
+        a=__gcd(a,arr[i]);
+    }
+    cout<<max(__gcd(a,arr[n-2])+arr[n-1],__gcd(arr[n-1],a)+arr[n-2])<<endl;
+
+}
+
+int main()
+{
+    fast_io;
+
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+
+    int t;
+    cin>>t;
+    while(t--)
+        solve();
+}
