@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+void solve(){
+    ll n,m;
+    cin>>n;
+    m=n;
+    vi arr(n);
+    ll dst=0;
+    for(auto &x: arr) cin>>x;
+    if (n==1){
+        cout<<"0\n"<<arr[0]<<nline;
+        return;
+    }
+    vi ans=arr;
+    ll i=0;
+    while(i<n){
+        if(i==n-1){
+            ll k=0;
+            if(arr[i]==arr[k])k++;
+            swap(arr[i],arr[k]);
+            break;
+        }
+        if(arr[i]==arr[i+1]){
+            ll k=n-1;
+            if(arr[i]==arr[k] && i>0) k=i-1;
+            swap(arr[i],arr[k]);
+            i++;
+            n--;
+        }
+        else{
+            swap(arr[i], arr[i+1]);
+            i+=2;
+        }
+    }
+    for(i=0; i<m; i++){
+        if(arr[i]!=ans[i]) dst++;
+    }
+    cout<<dst<<nline;
+    for(auto x: arr) cout<<x<<" ";
+    cout<<nline;
+
+}
+
+int main()
+{
+    fast_io;
+
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+
+    int t;
+    cin>>t;
+    while(t--)
+        solve();
+}
