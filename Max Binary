@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+
+void solve(){
+    ll n,k;
+    cin>>n>>k;
+    string s;
+    cin>>s;
+    if(s[0]=='0')s[0]='1',k--;
+    while(k--){
+        s+='0';
+    }
+    cout<<s<<nline;
+}
+int main()
+{
+    fast_io;
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
