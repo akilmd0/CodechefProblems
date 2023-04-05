@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+void solve(){
+    ll n,k;
+    cin>>n;
+    string s;
+    cin>>s;
+    char x1='0', x2='1';
+    ll c1=0, c2=1;
+    for(int i=0; i<n-1; i++){
+        if(s[i]=='1'){
+            if(x1=='1') x1='0';
+            else x1='1', c1++;
+            if(x2=='1') x2='0';
+            else x2='1' ,c2++;
+        }
+        else{
+            if(x1=='1') c1++;
+            if(x2=='1') c2++;
+        }
+    }
+    cout<<max(c1,c2)<<nline;
+}
+int main()
+{
+    fast_io;
+
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
