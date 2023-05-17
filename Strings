@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+
+void solve(){
+    string s,s1="1",s2="1";
+    cin>>s;
+    int c=0;
+    int n=s.size();
+    for(int i=n-1; i>=0; i--){
+        if(s[i]=='0'){ 
+            c++;
+            s2+='0';
+        }
+        s1+='0';
+    }
+    if(c==n-1){
+        cout<<s<<" 0\n";
+        return;
+    }
+    else{
+        cout<<s1<<" "<<s2<<nline;
+    }
+}
+int main()
+{
+    fast_io;
+
+
+    int t=1;
+    //cin>>t;
+    while(t--) 
+        solve();
+}
