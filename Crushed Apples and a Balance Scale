@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX INT_MAX
+#define MIN INT_MIN
+#define ll long long int
+#define nline "\n"
+#define BIG 998244353
+#define MOD 1000000007
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define pii pair<ll,ll>
+#define vi vector<ll>
+#define vb vector<bool>
+#define vc vector<char>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vpii vector<pii>
+#define ff first
+#define ss second
+#define mkp make_pair
+#define pb emplace_back
+bool powerTwo(ll x){
+    return (x && !(x&(x-1)));
+}
+void solve(){
+    ll m,n;
+    cin>>m>>n;
+     ll x=m/n;
+    if(n==m || (m%n==0 && powerTwo(x))){
+        cout<<"YES\n";
+        return;
+    }
+    else if(n>m || (m&1)){
+        cout<<"NO\n";
+        return;
+    }
+    if(powerTwo((m/__gcd(n,m))))cout<<"YES\n";
+    else cout<<"NO\n";
+        
+}
+int main()
+{
+    fast_io;
+
+    int t=1;
+    cin>>t;
+    while(t--) 
+        solve();
+}
